@@ -25,7 +25,8 @@ public class ErrorResponse {
         return of(status, Collections.singletonList(error));
     }
 
-    @RequiredArgsConstructor(access = PRIVATE)
+    @JsonAutoDetect(fieldVisibility = ANY)
+    @RequiredArgsConstructor
     static class ApiError {
         private final String code;
         private final String message;
