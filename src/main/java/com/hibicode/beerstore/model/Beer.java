@@ -1,5 +1,6 @@
 package com.hibicode.beerstore.model;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -11,6 +12,7 @@ import java.math.BigDecimal;
 
 @Entity
 @Data
+@Builder
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Beer {
 
