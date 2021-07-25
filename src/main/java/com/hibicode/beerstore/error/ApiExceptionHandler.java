@@ -1,5 +1,6 @@
 package com.hibicode.beerstore.error;
 
+import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import com.hibicode.beerstore.error.ErrorResponse.ApiError;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,12 +13,10 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import java.util.List;
 import java.util.Locale;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static java.util.stream.Collectors.*;
+import static java.util.stream.Collectors.toList;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
 @RestControllerAdvice
@@ -43,10 +42,19 @@ public class ApiExceptionHandler {
         return ResponseEntity.badRequest().body(errorResponse);
     }
 
-    private ApiError toApiError(String code, Locale locale) {
+    @ExceptionHandler(InvalidFormatException.class)
+    public ResponseEntity<ErrorResponse> handleInvalidFormatException(InvalidFormatException exception
+            , Locale locale) {
+        final String errorCode = "generic-1";
+        final HttpStatus status = HttpStatus.BAD_REQUEST;
+        final ErrorResponse errorResponse = ErrorResponse.of(status, toApiError(errorCode, locale, exception.getValue()));
+        return ResponseEntity.badRequest().body(errorResponse);
+    }
+
+    private ApiError toApiError(String code, Locale locale, Object... args ) {
         String message;
         try {
-            message = apiErrorMessageSource.getMessage(code, null, locale);
+            message = apiErrorMessageSource.getMessage(code, args, locale);
         } catch (NoSuchMessageException e) {
             log.error("Could not find any message for {} code under {} locale", code, locale);
             message = NO_MESSSAGE_AVAILABLE;
