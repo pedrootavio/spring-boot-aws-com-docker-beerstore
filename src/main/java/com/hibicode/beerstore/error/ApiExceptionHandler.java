@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.MessageSource;
 import org.springframework.context.NoSuchMessageException;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.ObjectError;
@@ -17,8 +18,10 @@ import java.util.Locale;
 import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
+import static org.springframework.core.Ordered.HIGHEST_PRECEDENCE;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
+@Order(HIGHEST_PRECEDENCE)
 @RestControllerAdvice
 @RequiredArgsConstructor
 @Slf4j
@@ -51,7 +54,7 @@ public class ApiExceptionHandler {
         return ResponseEntity.badRequest().body(errorResponse);
     }
 
-    private ApiError toApiError(String code, Locale locale, Object... args ) {
+    public ApiError toApiError(String code, Locale locale, Object... args ) {
         String message;
         try {
             message = apiErrorMessageSource.getMessage(code, args, locale);
