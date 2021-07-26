@@ -26,6 +26,7 @@ Essas referências adicionais também devem ajudá-lo:
 
 * [Gradle Build Scans – insights for your project's build](https://scans.gradle.com#gradle)
 * [RESTful API Design: How to handle errors?](https://alidg.me/blog/2016/9/24/rest-api-error-handling)
-
+* [JUnit5: Framework to write repeatable tests](https://junit.org/junit5/docs/current/user-guide/)
+* [Java Hamcrest: Matchers that can be combined to create flexible expressions of intent](http://hamcrest.org/JavaHamcrest/index)
 
 
