@@ -20,6 +20,7 @@ Os guias a seguir ilustram como usar alguns recursos de forma concreta:
 * [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
 * [Building REST services with Spring](https://spring.io/guides/tutorials/bookmarks/)
 * [Building a RESTful Web Service with Spring Boot Actuator](https://spring.io/guides/gs/actuator-service/)
+* [Building a repositories based on Spring and JPA](https://spring.io/projects/spring-data-jpa/)
 
 ### Links Adicionais
 Essas referências adicionais também devem ajudá-lo:
@@ -28,5 +29,6 @@ Essas referências adicionais também devem ajudá-lo:
 * [RESTful API Design: How to handle errors?](https://alidg.me/blog/2016/9/24/rest-api-error-handling)
 * [JUnit5: Framework to write repeatable tests](https://junit.org/junit5/docs/current/user-guide/)
 * [Java Hamcrest: Matchers that can be combined to create flexible expressions of intent](http://hamcrest.org/JavaHamcrest/index)
+* [Mockito: Test and Spy framework](https://site.mockito.org/)
 
 
